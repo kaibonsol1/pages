@@ -16,17 +16,19 @@
     <div id="topnav">
       <a data-screen="home">Home</a> |
       <a data-screen="stuff">Stuff</a> |
-      <a data-screen="settings">Settings</a>
+      <a data-screen="settings">Settings</a> |
+      <a data-screen="another">Another Screen</a>
     </div>
     <div id="content">
       <div class="screen" id="home" hidden> Home page content</div>
       <div class="screen" id="stuff" hidden>Here's some stuff</div>
       <div class="screen" id="settings" hidden>Settings</div>
+      <div class="screen" id="another" hidden>this is a whole different page ta-da</div>
     </div>
 
     <script>
 
-      // document.querySelector("#home").removeAttribute("hidden");
+      document.querySelector("#home").removeAttribute("hidden");
 
       let navAnchors = document.querySelectorAll("div#topnav a");
 
