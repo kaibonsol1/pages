@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <style>
+      #topnav {background-color: silver; padding: 4px;}
+      #content {font-size: 2em;}
+      /* .screen {display: none;} */
+      body {margin: 0;}
+      #content {margin: 3px;}
+      </style>
+  </head>
+  <body>
+    <div id="topnav">
+      <a data-screen="home">Home</a> |
+      <a data-screen="stuff">Stuff</a> |
+      <a data-screen="settings">Settings</a>
+    </div>
+    <div id="content">
+      <div class="screen" id="home" hidden> Home page content</div>
+      <div class="screen" id="stuff" hidden>Here's some stuff</div>
+      <div class="screen" id="settings" hidden>Settings</div>
+    </div>
+
+    <script>
+
+      // document.querySelector("#home").removeAttribute("hidden");
+
+      let navAnchors = document.querySelectorAll("div#topnav a");
+
+      navAnchors.forEach ( (anchor) => {
+
+        anchor.addEventListener ("click", (event) => {
+
+          document.querySelectorAll(".screen").forEach( (screen) => {
+            screen.setAttribute("hidden", true)
+          });
+
+
+          // read screen attribute
+          let target = event.target.getAttribute("data-screen");
+
+          // find target screen
+          let targetScreen = document.querySelector("#" + target);
+
+          // show it
+          targetScreen.removeAttribute("hidden");
+
+        })
+
+
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
