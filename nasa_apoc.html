@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NASA's Astronomy Picture of the Day</title>
+    </head>
+    <body>
+        <script>
+            apiEndpoint = "https://api.nasa.gov/planetary/apod?api_key=bBO5gJIG6lB2gjrYbSXE71cgdLVoCNo9M48Zn04V";
+
+            fetch(apiEndpoint)
+            .then(resp => {return resp.json()})
+            .then(json => {
+                // console.log(json)
+
+                var elems = []
+
+                let header = document.createElement("h1")
+                header.innerText = json["title"]
+                document.body.appendChild(header)
+
+                let par1 = document.createElement("p1")
+                par1.innerText = json["date"]
+                document.body.appendChild(par1)
+                document.body.appendChild(document.createElement("br"))
+
+                let par2 = document.createElement("p1")
+                par2.innerText = json["explanation"]
+                document.body.appendChild(par2)
+                document.body.appendChild(document.createElement("br"))
+
+                let img = document.createElement("img")
+                img.src = json["hdurl"] 
+                img.width = "800"
+                //img.maxHeight = "2em"
+                document.body.appendChild(img)
+            })
+        </script>
+    </body>
+</html>
