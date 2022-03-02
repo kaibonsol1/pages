@@ -1,7 +1,7 @@
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('sw-cache').then(function(cache) {
-      return cache.add('minimal.html');
+      return cache.add('pages/minimal.html');
     })
   );
 });
