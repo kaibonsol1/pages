@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <button>POLICE</button>
+        <button>FIRE</button>
+    </body>
+    <script>
+
+        let endpoint = "https://data.cityofchicago.org/resource/xzkq-xp2w.json";
+
+        /* for each button add the event listener using the innerHTML for department */
+        document.querySelectorAll("button").forEach(button => {
+            button.addEventListener("click", (e) => {
+                let query = "department=" + e.target.innerHTML;
+                window.open(endpoint + "?" + query);
+            });
+        });
+
+
+        /*
+        let po_button = document.getElementById("po");
+        let fi_button = document.getElementById("fi");
+
+        po_button.addEventListener("click", (e) => {
+            let query = "department=" + e.target.innerHTML; 
+            window.open(endpoint + "?" + query);
+        });
+
+        fi_button.addEventListener("click", (e) => {
+            let query = "department=FIRE";
+            window.open(endpoint + "?" + query);
+        });
+        */
+    </script>
+</html>
