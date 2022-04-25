@@ -45,7 +45,7 @@
                     button.disabled = false
                     var new_button = button.cloneNode(true)
                     button.parentNode.replaceChild(new_button, button)
-                    button = new_button
+                    button = new_button // update the reference to button
 
                     button.addEventListener("click", () => {
                         var utterance = new SpeechSynthesisUtterance(document.querySelector("textarea").value)
