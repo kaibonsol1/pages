@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+        <label class="mdc-text-field mdc-text-field--filled mdc-text-field--textarea mdc-text-field--no-label">
+            <span class="mdc-text-field__ripple"></span>
+            <span class="mdc-text-field__resizer">
+              <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+            </span>
+            <span class="mdc-line-ripple"></span>
+        </label>
+        <select>
+            <option value="empty">---</option>
+        </select>
+        <button class="mdc-button" disabled>
+            <span class="mdc-button__ripple"></span>
+            <span class="mdc-button__label">Text Button</span>
+        </button>
+        <script>
+            console.log(mdc)
+            mdc.textField.MDCTextField.attachTo(document.querySelector(".mdc-text-field"))
+            mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'))
+
+            //document.addEventListener("DOMContentLoaded", () => {
+                var synth = window.speechSynthesis
+                var voices = synth.getVoices()
+                console.log(voices)
+                voices.forEach(voice => {
+                    console.log(voice)
+                })
+            //})
+        </script>
+    </body>
+</html>
