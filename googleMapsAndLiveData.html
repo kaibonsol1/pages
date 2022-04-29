@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #map {
+                height: 100%;
+            }
+
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+        <script>
+            function initMap() {
+                const chicago = {lat: 41.8781, lng: -87.6298}
+                map = new google.maps.Map(
+                    document.getElementById("map"),
+                    { 
+                        center: chicago,
+                        zoom: 12,
+                    }
+                )
+
+                // log each record to the console
+                // add marker for each record
+                fetch("https://data.cityofchicago.org/resource/4ijn-s7e5.json?zip=60607&$LIMIT=10")
+                .then(resp => resp.json())
+                .then(json => {
+                    json.forEach(record => {
+                        console.log(record)
+
+                        console.log(record["latitude"])
+                        console.log(record["longitude"])
+                        const position = {lat: parseFloat(record["latitude"]), lng: parseFloat(record["longitude"])}
+                        
+                        const marker = new google.maps.Marker({
+                            position: position,
+                            map,
+                            title: record["dba_name"]
+                        })
+
+                        const contentString =
+                            '<div id="content">'+
+                            '<div id="siteNotice">'+
+                            '</div>'+
+                                '<h1>'+record["dba_name"]+'</h1>'+
+                                '<div id="bodyContent">'+
+                                    '<p> Facility Type: '+record["facility_type"]+'</p>'+
+                                    '<p> Address: '+record["address"]+'</p>'+
+                                    '<p> Inspection Date: '+record["inspection_date"].split("T")[0]+'</p>'+
+                                    '<p> Results: '+record["results"]+'</p>'+
+                                '</div>'+
+                            '</div>';
+
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: contentString
+                        })
+
+                        marker.addListener("click", () => {
+                            infoWindow.open({
+                                anchor: marker,
+                                map,
+                                shouldFocus: false,
+                            })
+                        })
+                    })
+                })
+            }
+            // data from https://data.cityofchicago.org/resource/4ijn-s7e5.json?$LIMIT=10
+            
+        </script>
+        <!--AIzaSyDTUMiIeKGa8AIDsT0s251mmq3cjgWirEM-->
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTUMiIeKGa8AIDsT0s251mmq3cjgWirEM&callback=initMap&v=weekly" async>
+        </script>
+    </body>
+</html>
